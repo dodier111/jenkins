@@ -10,7 +10,7 @@ sh 'rm -r /var/www/html/*'}
 stage("clone")
 {
 steps{
-sh 'git clone https://gitlab.com/dodier111/jenkins.git -b master'
+sh 'git clone https://github.com/dodier111/jenkins.git -b master'
 }}
 stage("deploy")
 {
