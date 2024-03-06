@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // Use sudo without password prompt
-                    sh 'sudo mv jenkins/* /var/www/html/'
+                    sh 'sudo mv * /var/www/html/'
                 }
             }
         }
