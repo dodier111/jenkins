@@ -37,7 +37,7 @@ pipeline {
             // Send email notification on build failure
             emailext subject: 'Jenkins Build Failed: ${currentBuild.fullDisplayName}',
                       body: 'The Jenkins build has failed. Please check the build logs for details.',
-                      to: 'your-email@example.com',
+                      to: 'abelr1abel@gmail.com',
                       attachLog: true
         }
     }
