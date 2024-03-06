@@ -15,7 +15,7 @@ sh 'git clone https://github.com/dodier111/jenkins.git -b master'
 stage("deploy")
 {
 steps{
-sh 'sudo mv * /var/www/html/'
+sh 'sudo mv jenkins/* /var/www/html/'
 }
 }
 }
