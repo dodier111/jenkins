@@ -1,5 +1,12 @@
 pipeline {
     agent any
+    options {
+        // Enable caching
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '5'))
+        // You can customize the caching options based on your requirements
+        // For example, use `buildDiscarder(logRotator(artifactDaysToKeepStr: '1', numToKeepStr: '10', artifactNumToKeepStr: '5'))`
+        // to keep artifacts for 1 day
+    }
     stages {
         stage("clean ws") {
             steps {
@@ -23,4 +30,3 @@ pipeline {
         // Other stages...
     }
 }
-
