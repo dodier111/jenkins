@@ -15,7 +15,7 @@ sh 'git clone https://github.com/dodier111/jenkins.git -b master'
 stage("deploy")
 {
 steps{
-sh 'mv artist/* /var/www/html/'
+sh 'mv * /var/www/html/'
 }
 }
 }
