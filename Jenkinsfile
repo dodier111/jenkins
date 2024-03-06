@@ -1,14 +1,6 @@
 pipeline {
     agent any
 
-    options {
-        // Configure the caching for the entire pipeline
-        // You can customize the key as needed based on your project
-        cache {
-            paths('node_modules/') // Specify the directory you want to cache
-        }
-    }
-
     stages {
         stage("clean ws") {
             steps {
@@ -40,5 +32,13 @@ pipeline {
                       to: 'abelr1abel@gmail.com',
                       attachLog: true
         }
+    }
+
+    options {
+        // Configure the caching for the entire pipeline
+        // You can customize the key as needed based on your project
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '1', daysToKeepStr: '1', numToKeepStr: '5'))
+        timestamps()
+        retry(3)
     }
 }
