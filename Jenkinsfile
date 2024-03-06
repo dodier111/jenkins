@@ -1,22 +1,26 @@
-pipeline{
-agent any
-stages{
-stage("clean ws")
-{
-steps{
-sh 'rm -r *'
-sh 'sudo rm -r /var/www/html/*'}
+pipeline {
+    agent any
+    stages {
+        stage("clean ws") {
+            steps {
+                script {
+                    // Check if the directory exists and is not empty
+                    if (fileExists("/var/www/html/") && sh(script: 'ls -A /var/www/html/', returnStatus: true) == 0) {
+                        // Use sudo without password prompt
+                        sh 'sudo rm -r /var/www/html/*'
+                    }
+                }
+            }
+        }
+        stage("deploy") {
+            steps {
+                script {
+                    // Use sudo without password prompt
+                    sh 'sudo mv jenkins/* /var/www/html/'
+                }
+            }
+        }
+        // Other stages...
+    }
 }
-stage("clone")
-{
-steps{
-sh 'git clone https://github.com/dodier111/jenkins.git -b master'
-}}
-stage("deploy")
-{
-steps{
-sh 'sudo mv jenkins/* /var/www/html/'
-}
-}
-}
-}
+
