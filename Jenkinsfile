@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+    
     stages {
         stage("clean ws") {
             steps {
@@ -8,7 +12,7 @@ pipeline {
                     // Check if the directory exists and is not empty
                     if (fileExists("/var/www/html/") && sh(script: 'ls -A /var/www/html/', returnStatus: true) == 0) {
                         // Use sudo without password prompt
-                        sh 'sudo rm -r /va/www/html/*'
+                        sh 'sudo rm -r /var/www/html/*'
                     }
                 }
             }
